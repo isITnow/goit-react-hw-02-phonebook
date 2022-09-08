@@ -1,0 +1,32 @@
+import PropTypes from 'prop-types';
+import s from './ContactsList.module.css';
+import ContactsItem from './ContactsItem';
+
+export default function ContactsList({ contacts, onDelete }) {
+  return (
+    <ul className={s.contacts__list}>
+      {contacts.map(({ name, number, id }) => {
+        return (
+          <ContactsItem
+            key={id}
+            name={name}
+            number={number}
+            id={id}
+            onDelete={onDelete}
+          />
+        );
+      })}
+    </ul>
+  );
+}
+
+ContactsList.propTypes = {
+  onDelete: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+};
