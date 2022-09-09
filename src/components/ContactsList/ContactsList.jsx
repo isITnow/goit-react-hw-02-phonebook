@@ -3,6 +3,10 @@ import s from './ContactsList.module.css';
 import ContactsItem from './ContactsItem';
 
 export default function ContactsList({ contacts, onDelete }) {
+  if (!contacts.length) {
+    return <p>User not found</p>;
+  }
+
   return (
     <ul className={s.contacts__list}>
       {contacts.map(({ name, number, id }) => {
